@@ -1,0 +1,83 @@
+$def with(data)
+
+<!doctype html>
+<html lang="es">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+        crossorigin="anonymous"></script>
+    <title>Crisnomo.blog</title>
+
+    <script type="text/javascript">
+        window.onload = function () {
+            var x = document.getElementsByClassName("fecha");
+            console.log(x.length)
+            for (var i = 0; i < x.length; i++) {
+                var fechaSinFormato = x[i].innerHTML;
+                console.log(fechaSinFormato)
+                var fechaConFormatoAMedias = fechaSinFormato.split(" ")[0]
+                var dia, mes, anyo;
+                dia = fechaConFormatoAMedias.split("-")[2]
+                mes = fechaConFormatoAMedias.split("-")[1]
+                anyo = fechaConFormatoAMedias.split("-")[0]
+                var fechaConFormato = dia + '/' + mes + '/' + anyo
+                console.log(fechaConFormato)
+                x[i].innerHTML = fechaConFormato
+            }
+        }
+    </script>
+
+    <style>
+        .carousel-control-prev-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3E%3C/svg%3E") !important;
+        }
+
+        .carousel-control-next-icon {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23000' viewBox='0 0 8 8'%3E%3Cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3E%3C/svg%3E") !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Image and text -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container justify-content-center">
+            <a class="navbar-brand" href="/">
+                <img src="/static/nombre.png" width="50%" height="50%" class="mx-auto d-block" alt="...">
+
+            </a>
+        </div>
+    </nav>
+    <div class="container">
+        $for articulo in data:
+        <hr>
+        <div class="row">
+            <div class="col">
+                $articulo['titulo']
+            </div>
+            <div class="col">
+                <img src="/static/$articulo['imagen']" width="50%" height="100%" class="mx-auto d-block" alt="...">
+            </div>
+            <div class="col">
+                <p class="fecha">$articulo['fecha']</p>
+            </div>
+            <div class="col">
+                <a class="btn btn-secondary" href="/articulo?id=$articulo['idpublicacion']" role="button">Ir al
+                    artículo</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
