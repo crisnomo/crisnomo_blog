@@ -11,12 +11,18 @@ URLS = ("/", "index",
         "/lista", "lista",
         "/articulo", "articulo",
         "/sumar", "sumar",
-        "/restar", "restar")
+        "/restar", "restar",
+        "/terminos", "terminos")
 
 class index():
     
     def GET(self):
         return render.index()
+    
+class terminos():
+    
+    def GET(self):
+        return render.terminos()
     
 class restar():
 
